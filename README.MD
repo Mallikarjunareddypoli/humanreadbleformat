@@ -64,6 +64,20 @@ Write a REST service to expose the talking clock and allow an optional parameter
 {value: "One o'clock"}
 --------------------------------------------------------------
 Answer :
+
+Build the application by the maven
+
+mallikarjunareddypoli@MallikaeddysMBP humanreadbleformat % mvn clean install
+
+The jar file generated in to target folder
+
+execute this command to start the service
+
+mallikarjunareddypoli@MallikaeddysMBP humanreadbleformat % java -jar target/humanreadableformat-0.0.1-SNAPSHOT.jar
+
+Once service started you can test using endpoint url by the SOAPUI,POSTMAN,CURL Command
+
+
 http://localhost:8080/currentTime
 if current time is : 11:18
 result : {"value":"Eighteen past eleven"}
