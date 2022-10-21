@@ -20,112 +20,21 @@ public class HttpRequestTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-
-
     @Test
     public void shouldReturnGivenTimeInWords() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/16:30",
-                        String.class
-                )
-        ).contains("half past four");
-    }
-//01:00 one o'clock
-    @Test
-    public void shouldReturnGivenTimeInWordsTest1() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/01:00",
-                        String.class
-                )
-        ).contains("one o'clock");
-    }
-    //02:00 Two o'clock
-    @Test
-    public void shouldReturnGivenTimeInWordsTest2() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/02:00",
-                        String.class
-                )
-        ).contains("two o'clock");
-    }
-    //13:00 One o'clock
-    @Test
-    public void shouldReturnGivenTimeInWordsTest3() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13:00",
-                        String.class
-                )
-        ).contains("one o'clock");
-    }
-    //3:05 Five past one
-    @Test
-    public void shouldReturnGivenTimeInWordsTest4() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/03:05",
-                        String.class
-                )
-        ).contains("five past three");
-    }
-    //13:10 Ten past one
-    @Test
-    public void shouldReturnGivenTimeInWordsTest5() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13:10",
-                        String.class
-                )
-        ).contains("ten past one");
-    }
-    //13:25 Twenty five past one
-    @Test
-    public void shouldReturnGivenTimeInWordsTest6() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13:25",
-                        String.class
-                )
-        ).contains("twenty-five past one");
-    }
-    //13:30 Half past one
-    @Test
-    public void shouldReturnGivenTimeInWordsTest7() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13:30",
-                        String.class
-                )
-        ).contains("half past one");
-    }
-    //13:35 Twenty five to two
-    @Test
-    public void shouldReturnGivenTimeInWordsTest8() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13:35",
-                        String.class
-                )
-        ).contains("twenty-five to two");
-    }
-    //13:55 Five to two
-    @Test
-    public void shouldReturnGivenTimeInWordsTest9() {
-        assertThat(
-                this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13:55",
-                        String.class
-                )
-        ).contains("five to two");
+        TestCaseConstants.tstMap.entrySet().forEach(entry->
+                assertThat(
+                        this.restTemplate.getForObject(
+                                "http://localhost:" + port + "/time(hh:ss)/"+entry.getKey(),
+                                String.class
+                        )
+                ).contains(entry.getValue()));
     }
     @Test
     public void shouldReturnGivenExceptionForInvalidFormat() {
         assertThat(
                 this.restTemplate.getForObject(
-                        "http://localhost:" + port + "/13",
+                        "http://localhost:" + port + "/time(hh:ss)/13",
                         String.class
                 )
         ).contains(HumanReadableConstants.TIME_FORMAT_ERROR);
