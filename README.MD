@@ -65,6 +65,7 @@ Write a REST service to expose the talking clock and allow an optional parameter
 --------------------------------------------------------------
 Answer :
 
+<<<<<<< HEAD
 Build the application by the maven
 
 mallikarjunareddypoli@MallikaeddysMBP humanreadbleformat % mvn clean install
@@ -77,6 +78,8 @@ mallikarjunareddypoli@MallikaeddysMBP humanreadbleformat % java -jar target/huma
 
 Once service started you can test using endpoint url by the SOAPUI,POSTMAN,CURL Command
 
+=======
+>>>>>>> a233dbf (JenkinFile)
 
 http://localhost:8080/currentTime
 if current time is : 11:18
